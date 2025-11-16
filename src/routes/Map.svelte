@@ -23,6 +23,10 @@
 
     updateDimensions();
     window.addEventListener('resize', updateDimensions);
+    document.addEventListener('fullscreenchange', updateDimensions);
+    document.addEventListener('webkitfullscreenchange', updateDimensions);
+    document.addEventListener('mozfullscreenchange', updateDimensions);
+    document.addEventListener('MSFullscreenChange', updateDimensions);
 
     // Subscribe to data changes
     const unsubscribe = graphData.subscribe(data => {
@@ -31,6 +35,10 @@
 
     return () => {
       window.removeEventListener('resize', updateDimensions);
+      document.removeEventListener('fullscreenchange', updateDimensions);
+      document.removeEventListener('webkitfullscreenchange', updateDimensions);
+      document.removeEventListener('mozfullscreenchange', updateDimensions);
+      document.removeEventListener('MSFullscreenChange', updateDimensions);
       unsubscribe();
     };
   });
